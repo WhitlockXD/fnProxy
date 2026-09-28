@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+expected="@ARCH@"
+if [ "$(uname -m)" != "$expected" ]; then
+  echo "此安装包需要 $expected 架构。" > "${TRIM_TEMP_LOGFILE:-/dev/stderr}"
+  exit 1
+fi
+exit 0

@@ -1,0 +1,50 @@
+#!/bin/bash
+set -euo pipefail
+
+BIN="${TRIM_APPDEST}/bin/fnvpn"
+REAL_BIN="$(readlink -f "$BIN")"
+PID="${TRIM_PKGVAR}/daemon.pid"
+
+running() {
+  [ -f "$PID" ] || return 1
+  local p
+  p="$(cat "$PID")"
+  [[ "$p" =~ ^[0-9]+$ ]] || return 1
+  [ "$(readlink "/proc/$p/exe" 2>/dev/null || true)" = "$REAL_BIN" ] || return 1
+  kill -0 "$p" 2>/dev/null
+}
+
+case "${1:-}" in
+  start)
+    if running; then exit 0; fi
+    mkdir -p "$TRIM_PKGETC" "$TRIM_PKGVAR"
+    "$BIN" recover
+    export FNVPN_UID="$(id -u "$TRIM_USERNAME")"
+    export FNVPN_GID="$(id -g "$TRIM_USERNAME")"
+    # Fail closed until the fnOS gateway worker UID is verified on the target.
+    export FNVPN_GATEWAY_UID="${FNVPN_GATEWAY_UID:-0}"
+    "$BIN" daemon </dev/null >>"${TRIM_PKGVAR}/service.log" 2>&1 &
+    echo "$!" > "$PID"
+    for _ in $(seq 1 30); do
+      if [ -S "${TRIM_APPDEST}/helper.sock" ] && [ -S "${TRIM_APPDEST}/app.sock" ] && running; then exit 0; fi
+      sleep 0.2
+    done
+    echo "网络代理管理服务未启动；请查看应用日志。" > "${TRIM_TEMP_LOGFILE:-/dev/stderr}"
+    exit 1
+    ;;
+  stop)
+    if running; then "$BIN" ctl shutdown || true; fi
+    for _ in $(seq 1 30); do if ! running; then break; fi; sleep 0.2; done
+    if running; then kill "$(cat "$PID")" || true; fi
+    "$BIN" recover
+    rm -f "$PID"
+    ;;
+  status)
+    if running; then exit 0; fi
+    exit 3
+    ;;
+  *)
+    echo "未知操作" > "${TRIM_TEMP_LOGFILE:-/dev/stderr}"
+    exit 1
+    ;;
+esac

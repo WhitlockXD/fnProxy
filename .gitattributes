@@ -1,0 +1,7 @@
+* text=auto
+packaging/cmd/* text eol=lf
+packaging/config/* text eol=lf
+packaging/ui/config text eol=lf
+*.go text eol=lf
+*.py text eol=lf
+*.png binary

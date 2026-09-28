@@ -1,0 +1,7 @@
+.tools/
+dist/
+build/
+*.fpk
+*.exe
+__pycache__/
+*.pyc

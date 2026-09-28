@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+mkdir -p "$TRIM_PKGETC" "$TRIM_PKGVAR"
+chmod 700 "$TRIM_PKGETC" "$TRIM_PKGVAR"

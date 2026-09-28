@@ -1,0 +1,15 @@
+{
+  ".url": {
+    "fnvpn.main": {
+      "title": "fnProxy",
+      "icon": "images/icon_{0}.png",
+      "type": "iframe",
+      "protocol": "",
+      "gatewayPrefix": "/app/fnvpn",
+      "gatewaySocket": "app.sock",
+      "url": "/app/fnvpn",
+      "allUsers": false,
+      "control": {"accessPerm": "readonly"}
+    }
+  }
+}
