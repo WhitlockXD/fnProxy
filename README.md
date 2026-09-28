@@ -4,7 +4,7 @@
 
 面向 fnOS 宿主机的原生 FPK 应用。桌面窗口提供订阅导入、代理组和节点选择、规则／全局／直连模式、TUN 启停、出口检测与脱敏诊断。首次启动不修改网络；只有管理员导入有效配置并点击开启后才尝试建立 TUN。
 
-**当前交付状态：** 用户已在 fnOS 1.2.0701 上安装旧版、导入订阅并启动 TUN。诊断报告显示 `fnvpn0` 和 Mihomo 策略规则存在；四个站点的系统 DNS 解析全部超时。后续版本调整 DNS 路径、增加国内分流和订阅内嵌规则；0.1.9 改为 fnProxy 名称与新图标。0.1.6 及之后版本尚未收到 fnOS 安装验收结果。[测试记录](docs/TESTING.md)列出了实机仍需执行的项目。
+**当前交付状态：** 用户已在 fnOS 1.2.0701 上安装旧版、导入订阅并启动 TUN。诊断报告显示 `fnvpn0` 和 Mihomo 策略规则存在；四个站点的系统 DNS 解析全部超时。后续版本调整 DNS 路径、增加国内分流和订阅内嵌规则；0.1.9 改为 fnProxy 名称与新图标，0.1.10 修复页面图标加载并更换桌面图标资源路径。0.1.6 及之后版本的完整 fnOS 验收仍未完成。[测试记录](docs/TESTING.md)列出了实机仍需执行的项目。
 
 ## 目录
 
@@ -42,7 +42,7 @@ FPK 的网关 UID 默认设为 `0`，Socket 为 `0600`。**目标 fnOS 网关工
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1
 ```
 
-默认构建结果为 `dist/fnproxy_0.1.9_x86.fpk` 和 `dist/SHA256SUMS.txt`。脚本使用官方 `fnpack build`，修正 Windows 打包时遗失的 Linux 可执行位，保持 FPK 外层 gzip 格式并更新归档校验值。FPK 的内部应用标识仍为 `fnvpn`，使旧安装可原位升级并保留配置。发布前要在真实 fnOS 测试机通过应用中心手动安装并完成[验收记录](docs/TESTING.md)。
+默认构建结果为 `dist/fnproxy_0.1.10_x86.fpk` 和 `dist/SHA256SUMS.txt`。脚本使用官方 `fnpack build`，修正 Windows 打包时遗失的 Linux 可执行位，保持 FPK 外层 gzip 格式并更新归档校验值。FPK 的内部应用标识仍为 `fnvpn`，使旧安装可原位升级并保留配置。桌面入口引用版本化图标文件；应用中心图标由 FPK 根目录的 `ICON.PNG` 和 `ICON_256.PNG` 提供。fnOS 可能缓存应用中心图标，升级后若仍显示旧图标，先强制刷新 fnOS 页面；不要在未备份订阅及设置前卸载应用。发布前要在真实 fnOS 测试机通过应用中心手动安装并完成[验收记录](docs/TESTING.md)。
 
 ## 使用与恢复
 

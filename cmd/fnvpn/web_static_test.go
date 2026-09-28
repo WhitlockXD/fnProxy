@@ -15,6 +15,7 @@ func TestStaticRoutes(t *testing.T) {
 		"index.html": "<html>home</html>",
 		"style.css":  "body{color:red}",
 		"app.js":     "window.loaded=true",
+		"icon.png":   "png-icon-bytes",
 	} {
 		if err := os.WriteFile(filepath.Join(directory, name), []byte(body), 0600); err != nil {
 			t.Fatal(err)
@@ -29,9 +30,10 @@ func TestStaticRoutes(t *testing.T) {
 		{"/app/fnvpn", "home", "text/html"},
 		{"/app/fnvpn/", "home", "text/html"},
 		{"/app/fnvpn/style.css", "body{color:red}", "text/css"},
-		{"/app/fnvpn/style.css?v=0.1.9", "body{color:red}", "text/css"},
+		{"/app/fnvpn/style.css?v=0.1.10", "body{color:red}", "text/css"},
 		{"/app/fnvpn/app.js", "window.loaded=true", "text/javascript"},
-		{"/app/fnvpn/app.js?v=0.1.9", "window.loaded=true", "text/javascript"},
+		{"/app/fnvpn/app.js?v=0.1.10", "window.loaded=true", "text/javascript"},
+		{"/app/fnvpn/icon.png?v=0.1.10", "png-icon-bytes", "image/png"},
 	} {
 		req := httptest.NewRequest(http.MethodGet, tc.path, nil)
 		req.Header.Set("X-Trim-Isadmin", "true")

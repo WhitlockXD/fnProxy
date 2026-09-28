@@ -26,6 +26,8 @@ func registerStatic(mux *http.ServeMux, prefix, directory string) {
 			name = "app.js"
 		case "/style.css":
 			name = "style.css"
+		case "/icon.png":
+			name = "icon.png"
 		default:
 			http.NotFound(w, r)
 			return
@@ -42,6 +44,8 @@ func registerStatic(mux *http.ServeMux, prefix, directory string) {
 			w.Header().Set("Content-Type", "text/javascript; charset=utf-8")
 		case ".css":
 			w.Header().Set("Content-Type", "text/css; charset=utf-8")
+		case ".png":
+			w.Header().Set("Content-Type", "image/png")
 		}
 		w.Header().Set("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'")
 		w.Header().Set("X-Content-Type-Options", "nosniff")

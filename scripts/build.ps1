@@ -8,7 +8,7 @@ if (!(Test-Path $fnpack)) { $fnpack = (Get-Command fnpack -ErrorAction Stop).Sou
 $tools = Join-Path $root '.tools/mihomo'
 New-Item -ItemType Directory -Force $tools | Out-Null
 $release = 'v1.19.31'
-$appVersion = '0.1.9'
+$appVersion = '0.1.10'
 $targets = @(
     @{ arch='amd64'; platform='x86'; asset='mihomo-linux-amd64-compatible-v1.19.31.gz'; sha='04cf9f09671704f839ddbee2e93069dc831a4123a75281e725d1d96ab9ac1afc' },
     @{ arch='arm64'; platform='arm'; asset='mihomo-linux-arm64-v1.19.31.gz'; sha='9e0f11afbf38426b8bd88fdc594678f8161c57eccb4e1b77acb12b493904f1d4' }
@@ -61,6 +61,8 @@ foreach ($target in $targets) {
     Copy-Item "$root/packaging/wizard/.keep" "$stage/wizard/.keep"
     Copy-Item "$root/packaging/icons/icon_64.png" "$stage/app/ui/images/icon_64.png"
     Copy-Item "$root/packaging/icons/icon_256.png" "$stage/app/ui/images/icon_256.png"
+    Copy-Item "$root/packaging/icons/icon_64.png" "$stage/app/ui/images/fnproxy_0110_64.png"
+    Copy-Item "$root/packaging/icons/icon_256.png" "$stage/app/ui/images/fnproxy_0110_256.png"
     Copy-Item "$root/packaging/icons/icon_64.png" "$stage/ICON.PNG"
     Copy-Item "$root/packaging/icons/icon_256.png" "$stage/ICON_256.PNG"
     Copy-Item "$root/LICENSE" "$stage/LICENSE"
