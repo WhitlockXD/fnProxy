@@ -2,9 +2,29 @@
 
 ![fnProxy 图标](packaging/icons/icon_256.png)
 
-面向 fnOS 宿主机的原生 FPK 应用。桌面窗口提供订阅导入、代理组和节点选择、规则／全局／直连模式、TUN 启停、出口检测与脱敏诊断。首次启动不修改网络；只有管理员导入有效配置并点击开启后才尝试建立 TUN。
+**飞牛 fnOS / 飞牛 NAS 宿主机代理管理器。**fnProxy 是基于 Mihomo 的原生 FPK 应用，通过 TUN 管理 NAS 主机网络。支持导入 Clash/Mihomo YAML 订阅、切换代理节点、规则分流、全局或直连模式，以及宿主机连接诊断。首次启动不修改网络；管理员导入有效配置并主动开启后才建立 TUN。
 
-**当前交付状态：** 用户已在 fnOS 1.2.0701 上安装旧版、导入订阅并启动 TUN。诊断报告显示 `fnvpn0` 和 Mihomo 策略规则存在；四个站点的系统 DNS 解析全部超时。后续版本调整 DNS 路径、增加国内分流和订阅内嵌规则；0.1.9 改为 fnProxy 名称与新图标，0.1.10 修复页面图标加载并更换桌面图标资源路径。0.1.6 及之后版本的完整 fnOS 验收仍未完成。[测试记录](docs/TESTING.md)列出了实机仍需执行的项目。
+fnProxy is a native **fnOS NAS host proxy manager** powered by **Mihomo TUN**. It imports Clash/Mihomo YAML subscriptions and provides node selection, rule-based routing, connection tests, and network recovery.
+
+[下载 x86 FPK 安装包](https://github.com/WhitlockXD/fnProxy/releases/tag/v0.1.10) · [查看实机截图](#fnos-实机截图) · [测试与限制](docs/TESTING.md)
+
+## fnOS 实机截图
+
+以下截图由用户在 fnOS 上运行 fnProxy v0.1.10 时提供。连接测试显示四个站点有 HTTPS 响应，普通请求的路由指向 `fnvpn0`；截图本身不能证明每条规则实际使用的代理出口。
+
+### 总览与系统 TUN
+
+![fnProxy 在飞牛 fnOS 桌面的总览页面，显示 TUN 状态、代理节点和宿主机出口检测](docs/screenshots/fnos-overview.png)
+
+### 代理节点与规则模式
+
+![fnProxy 节点与规则页面，提供代理组、节点选择，以及规则、全局和直连模式](docs/screenshots/fnos-rule-mode.png)
+
+### 宿主机连接诊断
+
+![fnProxy 诊断页面，展示 YouTube、Google、GitHub、百度的 HTTPS 连接和 DNS 检测结果](docs/screenshots/fnos-connectivity.png)
+
+**当前交付状态：** 用户提供的 v0.1.10 实机截图显示应用界面、TUN 运行状态、四站点连接与 DNS 检测结果。旧版曾出现系统 DNS 超时，后续版本已调整 DNS 路径；宿主机代理出口、规则命中、升级和卸载恢复仍需完整验收。[测试记录](docs/TESTING.md)列出了待验证项目。
 
 ## 目录
 
