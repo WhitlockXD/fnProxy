@@ -2,7 +2,7 @@
 
 ![fnProxy 图标](packaging/icons/icon_256.png)
 
-**飞牛 fnOS / 飞牛 NAS 宿主机代理管理器。**fnProxy 是基于 Mihomo 的原生 FPK 应用，通过 TUN 管理 NAS 主机网络。支持导入 Clash/Mihomo YAML 订阅、切换代理节点、规则分流、全局或直连模式，以及宿主机连接诊断。首次启动不修改网络；管理员导入有效配置并主动开启后才建立 TUN。
+**飞牛 fnOS / 飞牛 NAS 宿主机代理管理器。** fnProxy 是基于 Mihomo 的原生 FPK 应用，通过 TUN 管理 NAS 主机网络。支持导入 Clash/Mihomo YAML 订阅、切换代理节点、规则分流、全局或直连模式，以及宿主机连接诊断。首次启动不修改网络；管理员导入有效配置并主动开启后才建立 TUN。
 
 fnProxy is a native **fnOS NAS host proxy manager** powered by **Mihomo TUN**. It imports Clash/Mihomo YAML subscriptions and provides node selection, rule-based routing, connection tests, and network recovery.
 
