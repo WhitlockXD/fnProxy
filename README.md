@@ -29,6 +29,10 @@ Native Mihomo TUN proxy manager for the fnOS NAS host, with Clash/Mihomo YAML im
 
 ![fnProxy 检测 YouTube、Google、GitHub 和百度连接的诊断页面](docs/screenshots/fnos-connectivity.png)
 
+### 运行状态
+<img width="1920" height="919" alt="image" src="https://github.com/user-attachments/assets/313c4518-d5e8-4668-9c27-cac341b043cb" />
+
+
 ## 安装与使用
 
 在 x86_64 的 fnOS 中手动安装 FPK，打开 fnProxy，导入有效订阅，选择节点后开启系统 TUN。需要排查网络时，可在总览和诊断页运行检测；停止应用代理可使用「停止代理并恢复网络」。内部应用 ID 保持 `fnvpn`，用于从旧版本升级。
